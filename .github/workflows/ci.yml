@@ -7,7 +7,7 @@ on:
       - develop
       - feature/**
   pull_request:
-    branches: 
+    branches:
       - main
       - develop
 
@@ -25,17 +25,15 @@ jobs:
           node-version: 18
           cache: 'npm'
 
-      # ---- BACKEND ----
-      - name: Install dependencies (backend)
-        working-directory: backend
+      # ---- ROOT (backend + eventuali pacchetti comuni) ----
+      - name: Install root dependencies
         run: npm install
 
       - name: Run backend tests
-        working-directory: backend
         run: npm test --if-present
 
       # ---- FRONTEND ----
-      - name: Install dependencies (frontend)
+      - name: Install frontend dependencies
         working-directory: frontend
         run: npm install
 
