@@ -4,7 +4,7 @@
   "description": "A website where you can manage your own flashcards to study and memorize concepts.",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"No tests yet\""
   },
   "keywords": [],
   "author": "",
