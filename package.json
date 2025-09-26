@@ -1,0 +1,17 @@
+{
+  "name": "flashcards-website",
+  "version": "1.0.0",
+  "description": "A website where you can manage your own flashcards to study and memorize concepts.",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "dotenv": "^17.2.2",
+    "express": "^5.1.0",
+    "mongoose": "^8.18.2"
+  }
+}
