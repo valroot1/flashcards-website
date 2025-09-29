@@ -2,7 +2,7 @@
   "name": "flashcards-website",
   "version": "1.0.0",
   "description": "A website where you can manage your own flashcards to study and memorize concepts.",
-  "main": "index.js",
+  "main": "backend/server.js",
   "scripts": {
     "test": "echo \"No tests yet\"",
     "build": "echo \"No build yet\"",
@@ -13,8 +13,12 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
+    "axios": "^1.12.2",
+    "bcryptjs": "^3.0.2",
+    "cookie-parser": "^1.4.7",
     "dotenv": "^17.2.2",
     "express": "^5.1.0",
+    "jsonwebtoken": "^9.0.2",
     "mongodb": "^6.20.0",
     "mongoose": "^8.1.1"
   },

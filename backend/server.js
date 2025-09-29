@@ -2,12 +2,15 @@ import express from 'express';
 import dotenv from "dotenv";
 import { connectDB } from './config/db.js';
 import Flashcard from './models/flashcard.js';
+import authRoutes from './routes/auth.js';
 
 dotenv.config();
 
 const app = express();
 
 app.use(express.json()); // Allows us to accept JSON data in the req.body
+
+app.use("/api/v1/auth", authRoutes);
 
 app.post("/api/flashcards", async (req,res) => {
     const flashcard = req.body;
