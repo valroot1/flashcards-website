@@ -3,6 +3,9 @@ import dotenv from "dotenv";
 import { connectDB } from './config/db.js';
 import Flashcard from './models/flashcard.js';
 import authRoutes from './routes/auth.js';
+import { ENV_VARS } from './config/envVars.js';
+
+const PORT = ENV_VARS.PORT;
 
 dotenv.config();
 
@@ -33,9 +36,11 @@ app.post("/api/flashcards", async (req,res) => {
     }
 })
 
+
+
 connectDB().then(() => {
-    app.listen(5000, () => {
-        console.log('Server started at http://localhost:5000');
+    app.listen(PORT, () => {
+        console.log('Server started at http://localhost:' + PORT);
     });
 }).catch((err) => {
     console.error("Failed to connect DB:", err.message);
