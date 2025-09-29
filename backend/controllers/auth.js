@@ -1,4 +1,6 @@
 import { User } from "../models/user.js";
+import bcryptjs from 'bcryptjs';
+import { generateTokenAndSetCookie } from "../utils/generateToken.js";
 
 export async function signup (req, res) {
     try {
@@ -30,15 +32,20 @@ export async function signup (req, res) {
             return res.status(400).json({success: false, message: "Username already exists"});
         }
 
+        // Crypts password usign bcryptjs
+        const salt = await bcryptjs.genSalt(10);
+        const hashedPassword = await bcryptjs.hash(password, salt);
+        
         // Creating new user
         const newUser = new User({
             username: username,
             email: email,
-            password: password
+            password: hashedPassword
         });
-
+        generateTokenAndSetCookie(newUser._id, res);
         await newUser.save();
-
+        return res.status(201).json({success:true, message: "New User created succesfully"});
+        
     } catch (error) {
         console.log("Error in creating new User: ", error.message);
         return res.status(500).json({success: false, message: "Internal server error"});
