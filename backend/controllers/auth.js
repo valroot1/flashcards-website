@@ -58,6 +58,12 @@ export async function login (req, res) {
         if(!email || !password) {
             return res.status(400).json({success: false, message: "All fields required"});
         }
+
+        const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+        if(!emailRegex.test(email)) {
+            return res.status(400).json({success: false, message: "Invalid email"});
+        }
+
         const user = await User.findOne({email:email});
         if(!user) {
             return res.status(404).json({success: false, message: "Invalid credentials"});
