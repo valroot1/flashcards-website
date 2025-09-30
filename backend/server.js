@@ -1,9 +1,10 @@
 import express from 'express';
 import dotenv from "dotenv";
 import { connectDB } from './config/db.js';
-import Flashcard from './models/flashcard.js';
 import authRoutes from './routes/auth.js';
+import flashcardRoutes from './routes/flashcard.js';
 import { ENV_VARS } from './config/envVars.js';
+import cookieParser from 'cookie-parser';
 
 const PORT = ENV_VARS.PORT;
 
@@ -12,8 +13,10 @@ dotenv.config();
 const app = express();
 
 app.use(express.json()); // Allows us to accept JSON data in the req.body
+app.use(cookieParser());
 
 app.use("/api/v1/auth", authRoutes);
+app.use("/api/v1/flashcard", flashcardRoutes);
 
 app.post("/api/flashcards", async (req,res) => {
     const flashcard = req.body;
@@ -34,7 +37,7 @@ app.post("/api/flashcards", async (req,res) => {
         console.error("Error in create flashcard: ", error.message);
         res.status(500).json({ success:false, message: "Server Error"});
     }
-})
+});
 
 
 
