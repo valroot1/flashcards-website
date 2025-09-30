@@ -57,5 +57,11 @@ export async function login (req, res) {
 }
 
 export async function logout (req, res) {
-    res.send("Logout route");
+    try {
+        res.clearCookie("jwt-flashcards");
+        res.status(200).json({success: true, message: "Logged out successfully"});
+    } catch (error) {
+        console.log("Error in logout: ", error.message);
+        return res.status(500).json({success: false, message: "Internal server error"});
+    }
 }
