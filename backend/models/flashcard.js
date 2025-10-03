@@ -1,9 +1,9 @@
 import mongoose from "mongoose";
 
 const flashcardSchema = new mongoose.Schema({
-    collection: {
+    group: {
 			type: mongoose.Schema.Types.ObjectId,
-			ref: "Collection",
+			ref: "Group",
 			required: true,
 		},
     title:{

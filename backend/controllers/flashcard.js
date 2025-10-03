@@ -11,10 +11,14 @@ export async function getFlashcardbyId(req, res) {
     }
 }
 
-export async function getUserFlashcards(req, res) {
+export async function getFlashcardsbyGroup(req, res) {
     try {
-        const userId = req.user._id;
-        const flashcards = await Flashcard.find({ user: userId });
+        const { id } = req.params; // id della collezione
+        const flashcards = await Flashcard.find({ group: id });
+
+        if(flashcards === undefined || flashcards.length == 0) {
+            return res.status(400).json({success: false, message: "No flashcards found"});
+        }
 
         return res.status(200).json({success: true, flashcards});
     } catch (error) {
