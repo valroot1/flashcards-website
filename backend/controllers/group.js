@@ -24,6 +24,22 @@ export async function getGroup(req, res) {
     }
 }
 
-export async function addGroup(req, res) { }
+export async function addGroup(req, res) {
+    const { user, name, description } = req.body;
+
+    // Input checks
+    if(!user || !name || !description) {
+        return res.status(400).json({ success: false, message: "All fields are required"});
+    }
+
+    const newGroup = new Group({
+        user,
+        name,
+        description
+    });
+
+    await newGroup.save();
+    return res.status(201).json({ success: true, message: "New group created successfully"});
+}
 
 export async function modifyGroup(req, res) { }
