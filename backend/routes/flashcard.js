@@ -1,9 +1,10 @@
 import express from 'express';
-import { getFlashcard } from '../controllers/flashcard.js';
+import { getFlashcardbyId, getUserFlashcards } from '../controllers/flashcard.js';
 import { protectRoute } from '../middleware/protectRoute.js';
 
 const router = express.Router();
 
-router.get("/getFlashcard/:id", protectRoute, getFlashcard);
+router.get("/getFlashcard/:id", protectRoute, getFlashcardbyId);
+router.get("/getFlashcards", protectRoute, getUserFlashcards);
 
 export default router;
