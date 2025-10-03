@@ -3,6 +3,7 @@ import dotenv from "dotenv";
 import { connectDB } from './config/db.js';
 import authRoutes from './routes/auth.js';
 import flashcardRoutes from './routes/flashcard.js';
+import groupRoutes from './routes/group.js';
 import { ENV_VARS } from './config/envVars.js';
 import cookieParser from 'cookie-parser';
 
@@ -17,6 +18,7 @@ app.use(cookieParser());
 
 app.use("/api/v1/auth", authRoutes);
 app.use("/api/v1/flashcard", flashcardRoutes);
+app.use("/api/v1/group", groupRoutes);
 
 app.post("/api/flashcards", async (req,res) => {
     const flashcard = req.body;
