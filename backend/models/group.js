@@ -8,7 +8,7 @@ const groupSchema = new mongoose.Schema({
     },
     name: {
         type: String,
-        required: true
+        required: true,
     }, 
     description: {
         type: String, 
@@ -18,5 +18,7 @@ const groupSchema = new mongoose.Schema({
 {
     timestamps: true // createdAt, updatedAt
 });
+
+groupSchema.index({ user: 1, name: 1 }, { unique: true });
 
 export const Group = mongoose.model('Group', groupSchema);
