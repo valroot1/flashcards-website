@@ -3,6 +3,11 @@ import { Flashcard } from '../models/flashcard.js';
 export async function getFlashcardbyId(req, res) {
     const { id } = req.params;
     try {
+
+        if (!mongoose.Types.ObjectId.isValid(id)) {
+            return res.status(400).json({ success: false, message: "Invalid group id" });
+        }
+
         const data = await Flashcard.findById(id);
         return res.status(200).json({ success: true, message: "Flashcard obtained", data: data });
     } catch (error) {
