@@ -32,6 +32,12 @@ export async function addGroup(req, res) {
         return res.status(400).json({ success: false, message: "All fields are required"});
     }
 
+    // Check existing group
+    const existingGroup = await Group.findOne({ user: user, name: name });
+    if(existingGroup) {
+        return res.status(400).json({ success:false, message: "Name of group already exists"});
+    }
+
     const newGroup = new Group({
         user,
         name,
