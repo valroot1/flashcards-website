@@ -28,7 +28,7 @@ export async function addGroup(req, res) {
     const { user, name, description } = req.body;
 
     // Input checks
-    if(!user || !name || !description) {
+    if(!user || !name) {
         return res.status(400).json({ success: false, message: "All fields are required"});
     }
 
