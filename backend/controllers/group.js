@@ -1,3 +1,4 @@
+import mongoose from 'mongoose';
 import { Group } from "../models/group.js";
 
 export async function getGroup(req, res) {
