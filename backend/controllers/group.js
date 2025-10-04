@@ -13,9 +13,8 @@ export async function getGroup(req, res) {
         // Check if Group is linked to the user
         const group = await Group.findOne({ _id: id, user: userId });
         if (!group) {
-            return res.status(404).json({ success: false, message: "Invalid group id" });
+            return res.status(404).json({ success: false, message: "Group not found" });
         }
-
         return res.status(200).json({ success: true, message: "Group obtained", data: group });
 
     } catch (error) {
@@ -76,6 +75,6 @@ export async function modifyGroup(req, res) {
         return res.status(201).json({ success: true, message: "Group updated successfully" });
     } catch (error) {
         console.log("Error in modifying Group: ", error.message);
-        return res.status(500).json({ success: false, message: "Internal server error" });
+        return res.status(500).json({ success: false, message: "Internal server error", data: existingGroup });
     }
 }
