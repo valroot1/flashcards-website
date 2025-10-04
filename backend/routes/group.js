@@ -1,11 +1,12 @@
 import express from 'express';
 import { protectRoute } from '../middleware/protectRoute.js';
-import { addGroup, getGroup, modifyGroup } from '../controllers/group.js';
+import { addGroup, deleteGroup, getGroup, modifyGroup } from '../controllers/group.js';
 
 const router = express.Router();
 
-router.get("/getGroup/:id", protectRoute, getGroup);
-router.post("/addGroup", protectRoute, addGroup);
-router.post("/modifyGroup", protectRoute, modifyGroup);
+router.get("/:id", protectRoute, getGroup);
+router.post("/", protectRoute, addGroup);
+router.put("/:id", protectRoute, modifyGroup);
+router.delete("/:id", protectRoute, deleteGroup);
 
 export default router;
