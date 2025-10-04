@@ -56,16 +56,17 @@ export async function addGroup(req, res) {
 
 export async function modifyGroup(req, res) { 
     try {
+        const { id } = req.params; // GroupId
         const userId = req.user._id;
-        const { groupId, name, description } = req.body;
+        const { name, description } = req.body;
 
         // Check inputs, description is optional
-        if(!name || !groupId) {
+        if(!name || !id) {
             return res.status(400).json({ success: false, message: "All fields are required" });
         }
 
         //Check group id and if it's linked to right user
-        const existingGroup = await Group.findOne({ _id: groupId, user: userId});
+        const existingGroup = await Group.findOne({ _id: id, user: userId});
         if(!existingGroup) {
             return res.status(404).json({ success:false, message: "Group not found"});
         }
@@ -73,9 +74,26 @@ export async function modifyGroup(req, res) {
         existingGroup.name = name;
         existingGroup.description = description;
         existingGroup.save();
-        return res.status(201).json({ success: true, message: "Group updated successfully" });
+        return res.status(201).json({ success: true, message: "Group updated successfully", data: existingGroup });
     } catch (error) {
         console.log("Error in modifying Group: ", error.message);
+        return res.status(500).json({ success: false, message: "Internal server error"});
+    }
+}
+
+export async function deleteGroup(req, res){
+    try {
+        const { id } = req.params;
+
+        const existingGroup = await Group.findOne({ _id: id, user: req.user._id });
+        if(!existingGroup) {
+            return res.status(404).json({ success:false, message: "Group not found"});
+        }
+
+        await existingGroup.deleteOne();
+        return res.status(201).json({ success: true, message: "Group deleted successfully"});
+    } catch (error) {
+        console.log("Error in deleting Group: ", error.message);
         return res.status(500).json({ success: false, message: "Internal server error", data: existingGroup });
     }
 }
