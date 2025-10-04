@@ -16,9 +16,9 @@ const app = express();
 app.use(express.json()); // Allows us to accept JSON data in the req.body
 app.use(cookieParser());
 
-app.use("/api/v1/auth", authRoutes);
-app.use("/api/v1/flashcard", flashcardRoutes);
-app.use("/api/v1/group", groupRoutes);
+app.use("/auth", authRoutes);
+app.use("/flashcard", flashcardRoutes);
+app.use("/group", groupRoutes);
 
 app.post("/api/flashcards", async (req,res) => {
     const flashcard = req.body;
