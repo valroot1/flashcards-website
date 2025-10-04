@@ -26,29 +26,30 @@ export async function getGroup(req, res) {
 
 export async function addGroup(req, res) {
     try {
-        const { user, name, description } = req.body;
+        const userId = req.user._id;
+        const { name, description } = req.body;
 
-        // Input checks
-        if (!user || !name) {
+        // Input checks, description is optional
+        if (!name) {
             return res.status(400).json({ success: false, message: "All fields are required" });
         }
 
         // Check existing group
-        const existingGroup = await Group.findOne({ user: user, name: name });
+        const existingGroup = await Group.findOne({ user: userId, name: name });
         if (existingGroup) {
             return res.status(400).json({ success: false, message: "Name of group already exists" });
         }
 
         const newGroup = new Group({
-            user,
+            user: userId,
             name,
             description
         });
 
         await newGroup.save();
-        return res.status(201).json({ success: true, message: "New group created successfully" });
+        return res.status(201).json({ success: true, message: "New group created successfully", data: newGroup });
     } catch (error) {
-        console.log("Error in creting Group: ", error.message);
+        console.log("Error in creating Group: ", error.message);
         return res.status(500).json({ success: false, message: "Internal server error" });
     }
 }
