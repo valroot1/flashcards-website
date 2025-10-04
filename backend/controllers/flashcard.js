@@ -1,3 +1,4 @@
+import mongoose from 'mongoose';
 import { Flashcard } from '../models/flashcard.js';
 
 export async function getFlashcardbyId(req, res) {
