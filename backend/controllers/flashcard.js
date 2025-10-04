@@ -17,7 +17,7 @@ export async function getFlashcardbyId(req, res) {
     }
 }
 
-export async function getFlashcardsbyGroup(req, res) {
+export async function getGroupFlashcards(req, res) {
     try {
         const { id } = req.params; // id della collezione
         const flashcards = await Flashcard.find({ group: id });
@@ -48,7 +48,7 @@ export async function addFlashcard(req, res) {
             definition
         });
         await newFlashcard.save();
-        return res.status(201).json({ success: true, message: "New flashcard created successfully" });
+        return res.status(201).json({ success: true, message: "New flashcard created successfully", data: newFlashcard });
 
     } catch (error) {
         console.log("Error in creating new flashcard: ", error.message);
@@ -57,7 +57,28 @@ export async function addFlashcard(req, res) {
 }
 
 export async function modifyFlashcard(req, res) {
-    return;
+    try {
+        const { id, title, definition } = req.body;
+
+        if(!groupId || !id || !title || !definition) {
+            return res.status(400).json({ success: false, message: "All fields are required" });
+        }
+
+        const existingFlashcard = await Flashcard.findById(id);
+
+        if(!existingFlashcard) {
+            return res.status(404).json({ success: false, message: "Flashcard not found" });
+        }
+
+        existingFlashcard.title = title;
+        existingFlashcard.definition = definition;
+        await existingFlashcard.save();
+        return res.status(200).json({ success: true, message: "Flashcard updated successfully", data: existingFlashcard });
+    } catch (error) {
+        console.log("Error in updating flashcard: ", error.message);
+        return res.status(500).json({ success: false, message: "Internal server error" });
+    }
+
 }
 
 export async function deleteFlashcard(req, res) {
