@@ -58,15 +58,16 @@ export async function addFlashcard(req, res) {
 
 export async function modifyFlashcard(req, res) {
     try {
-        const { id, title, definition } = req.body;
+        const { id } = req.params;
+        const { title, definition } = req.body;
 
-        if(!groupId || !id || !title || !definition) {
+        if (!groupId || !id || !title || !definition) {
             return res.status(400).json({ success: false, message: "All fields are required" });
         }
 
         const existingFlashcard = await Flashcard.findById(id);
 
-        if(!existingFlashcard) {
+        if (!existingFlashcard) {
             return res.status(404).json({ success: false, message: "Flashcard not found" });
         }
 
@@ -83,16 +84,15 @@ export async function modifyFlashcard(req, res) {
 
 export async function deleteFlashcard(req, res) {
     try {
-        const { id } = req.body;
-
+        const { id } = req.params;
         const existingFlashcard = await Flashcard.findById(id);
-        if(!existingFlashcard) {
+        if (!existingFlashcard) {
             return res.status(404).json({ success: false, message: "Flashcard not found" });
         }
 
         await existingFlashcard.deleteOne();
         return res.status(200).json({ success: true, message: "Flashcard deleted successfully" });
-        
+
     } catch (error) {
         console.log("Error in deleting flashcard: ", error.message);
         return res.status(500).json({ success: false, message: "Internal server error" });
