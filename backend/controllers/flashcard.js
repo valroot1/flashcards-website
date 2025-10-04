@@ -82,5 +82,19 @@ export async function modifyFlashcard(req, res) {
 }
 
 export async function deleteFlashcard(req, res) {
-    return;
+    try {
+        const { id } = req.body;
+
+        const existingFlashcard = await Flashcard.findById(id);
+        if(!existingFlashcard) {
+            return res.status(404).json({ success: false, message: "Flashcard not found" });
+        }
+
+        await existingFlashcard.deleteOne();
+        return res.status(200).json({ success: true, message: "Flashcard deleted successfully" });
+        
+    } catch (error) {
+        console.log("Error in deleting flashcard: ", error.message);
+        return res.status(500).json({ success: false, message: "Internal server error" });
+    }
 }
