@@ -61,7 +61,7 @@ export async function modifyFlashcard(req, res) {
         const { id } = req.params;
         const { title, definition } = req.body;
 
-        if (!groupId || !id || !title || !definition) {
+        if (!id || !title || !definition) {
             return res.status(400).json({ success: false, message: "All fields are required" });
         }
 

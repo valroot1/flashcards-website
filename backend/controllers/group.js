@@ -7,7 +7,7 @@ export async function getAllGroups(req,res) {
 
         const groups = await Group.find({ user: userId });
 
-        if(!group) {
+        if(!groups) {
             return res.status(404).json({ success: false, message: "Group not found" });
         }
 
