@@ -1,10 +1,10 @@
 import React from 'react';
 
 const HomePage = () => {
-  return (<div>
-    <button>FlashLearn</button>
-  </div>
-  )
+
+  return ( <div>
+    HOMEPAGE
+  </div>);
 };
 
 export default HomePage;
