@@ -1,10 +1,9 @@
-import React from 'react'
+import React from 'react';
 
 const HomePage = () => {
-  return (
-    <div>
-      HomePage
-    </div>
+  return (<div>
+    <button>FlashLearn</button>
+  </div>
   )
 };
 
