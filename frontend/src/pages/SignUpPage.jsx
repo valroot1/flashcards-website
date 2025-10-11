@@ -9,12 +9,16 @@ const SignUpPage = () => {
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
 
+  const handleSignup = (e) => {
+    e.preventDefault();
+    console.log(email, password, username);
+  }
   // const { signup, isSigningUp } = useAuthStore();
   return (
-    <div className="min-h-screen w-full font-[Nunito] flex flex-col bg-gray-100">
+    <div className="w-full font-[Nunito] flex flex-col">
 
-      <header className="flex items-center p-2 shadow-md">
-        <Link to={"/"} className="text-3xl font-extrabold text-blue-600 tracking-wide">
+      <header className="flex items-center p-4 shadow-md justify-between gap-2 sm:gap-8">
+        <Link to={"/"} className="text-2xl sm:text-3xl font-extrabold text-blue-600 tracking-wide">
           FlashLearn
         </Link>
       </header>
@@ -26,7 +30,7 @@ const SignUpPage = () => {
               Create your account
             </h2>
 
-            <form className="space-y-5">
+            <form className="space-y-5" onSubmit={handleSignup}>
               <div>
                 <label htmlFor="username" className="block text-sm font-medium text-gray-700">
                   Username
