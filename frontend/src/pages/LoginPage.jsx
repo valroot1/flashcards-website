@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { useAuthStore } from '../store/authUser';
 
 const LoginPage = () => {
@@ -9,13 +9,16 @@ const LoginPage = () => {
   const [email, setEmail] = useState(emailValue || "");
   const [password, setPassword] = useState("");
   const { login, isLoggingIn } = useAuthStore();
+  const navigate = useNavigate();
 
-  const handleLogin = (e) => {
+  const handleLogin = async (e) => {
     e.preventDefault();
-    login({ email, password });
+    const success = await login({ email, password });
+    if(success) {
+      navigate("/");
+    }
   }
-
-  // const { signup, isSigningUp } = useAuthStore();
+  
   return (
     <div className="w-full font-[Nunito] flex flex-col">
 
