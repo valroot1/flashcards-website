@@ -5,10 +5,12 @@ import { generateTokenAndSetCookie } from "../utils/generateToken.js";
 
 export async function authCheck (req, res) {
     try {
-        return res.status(200).json({success:true, message: "User is authenticated"});
-    } catch (error) {
-        return res.status(500).json({ success: false, message: "Internal server error"});
-    }
+		console.log("req.user:", req.user);
+		res.status(200).json({ success: true, user: req.user });
+	} catch (error) {
+		console.log("Error in authCheck controller", error.message);
+		res.status(500).json({ success: false, message: "Internal server error" });
+	}
 }
 
 export async function signup (req, res) {
