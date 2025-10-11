@@ -80,8 +80,9 @@ const SignUpPage = () => {
               <button
                 type="submit"
                 className="w-full bg-blue-600 hover:bg-blue-700 text-white py-2 rounded-lg font-semibold transition-colors"
+                disabled={isSigningUp}
               >
-                Sign Up
+                {isSigningUp ? "Loading..." : "Sign Up"}
               </button>
 
               <p className="text-center text-sm text-gray-500 mt-4">
