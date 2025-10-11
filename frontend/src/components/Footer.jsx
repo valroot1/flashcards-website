@@ -2,7 +2,7 @@ import React from 'react';
 
 function Footer() {
     return (
-        <footer className='py-6 md:px-8 md:py-0 bg-gray-100 text-black border-t-2 border-blue-500/20'>
+        <footer className='py-6 md:px-8 md:py-0 bg-gray-200 text-black border-t-2 border-blue-500/20'>
             <div className='flex flex-col items-center justify-between gap-4 md:h-15 md:flex-row'>
                 <p className='text-balance text-center text-sm leading-loose text-muted-foreground md:text-left'>
                     Built by{" "}
