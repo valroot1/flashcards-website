@@ -16,32 +16,9 @@ const app = express();
 app.use(express.json()); // Allows us to accept JSON data in the req.body
 app.use(cookieParser());
 
-app.use("/auth", authRoutes);
-app.use("/flashcard", flashcardRoutes);
-app.use("/group", groupRoutes);
-
-app.post("/api/flashcards", async (req,res) => {
-    const flashcard = req.body;
-
-    if(!flashcard.title || !flashcard.definition) {
-        return res.status(400).json({
-            success: false,
-            message: "Please provide all fields"
-        });
-    }
-
-    const newFlashcard = new Flashcard(flashcard);
-
-    try {
-        await newFlashcard.save();
-        res.status(201).json({ success: true, data: newFlashcard});
-    } catch(error) {
-        console.error("Error in create flashcard: ", error.message);
-        res.status(500).json({ success:false, message: "Server Error"});
-    }
-});
-
-
+app.use("/api/auth", authRoutes);
+app.use("/api/flashcard", flashcardRoutes);
+app.use("/api/group", groupRoutes);
 
 connectDB().then(() => {
     app.listen(PORT, () => {
