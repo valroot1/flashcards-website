@@ -3,18 +3,15 @@ import { Link } from "react-router-dom";
 import { useAuthStore } from '../store/authUser';
 
 const SignUpPage = () => {
-  const { searchParams } = new URL(document.location);
-  const emailValue = searchParams.get("email");
-
-  const [email, setEmail] = useState(emailValue || "");
+  const [email, setEmail] = useState("");
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
-
+  const { signup, isSigningUp } = useAuthStore();
+  
   const handleSignup = (e) => {
     e.preventDefault();
     signup({ email, password, username });
   }
-  const { signup, isSigningUp } = useAuthStore();
   return (
     <div className="w-full font-[Nunito] flex flex-col">
 

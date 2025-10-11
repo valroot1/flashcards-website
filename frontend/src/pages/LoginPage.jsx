@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { Link } from "react-router-dom";
+import { useAuthStore } from '../store/authUser';
 
 const LoginPage = () => {
   const { searchParams } = new URL(document.location);
@@ -7,10 +8,11 @@ const LoginPage = () => {
 
   const [email, setEmail] = useState(emailValue || "");
   const [password, setPassword] = useState("");
+  const { login, isLoggingIn } = useAuthStore();
 
   const handleLogin = (e) => {
     e.preventDefault();
-    console.log(email, password);
+    login({ email, password });
   }
 
   // const { signup, isSigningUp } = useAuthStore();
@@ -64,8 +66,9 @@ const LoginPage = () => {
               <button
                 type="submit"
                 className="w-full bg-blue-600 hover:bg-blue-700 text-white py-2 rounded-lg font-semibold transition-colors"
+                disabled={isLoggingIn}
               >
-                Login
+                {isLoggingIn ? "Loading..." : "Login"}
               </button>
 
               <p className="text-center text-sm text-gray-500 mt-4">
