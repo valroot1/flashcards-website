@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { Link } from "react-router-dom";
+import { useAuthStore } from '../store/authUser';
 
 const SignUpPage = () => {
   const { searchParams } = new URL(document.location);
@@ -11,9 +12,9 @@ const SignUpPage = () => {
 
   const handleSignup = (e) => {
     e.preventDefault();
-    console.log(email, password, username);
+    signup({ email, password, username });
   }
-  // const { signup, isSigningUp } = useAuthStore();
+  const { signup, isSigningUp } = useAuthStore();
   return (
     <div className="w-full font-[Nunito] flex flex-col">
 
