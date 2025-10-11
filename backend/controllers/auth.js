@@ -2,6 +2,15 @@ import { User } from "../models/user.js";
 import bcryptjs from 'bcryptjs';
 import { generateTokenAndSetCookie } from "../utils/generateToken.js";
 
+
+export async function authCheck (req, res) {
+    try {
+        return res.status(200).json({success:true, message: "User is authenticated"});
+    } catch (error) {
+        return res.status(500).json({ success: false, message: "Internal server error"});
+    }
+}
+
 export async function signup (req, res) {
     try {
         const {username, email, password} = req.body;
