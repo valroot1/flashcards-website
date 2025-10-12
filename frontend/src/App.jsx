@@ -7,6 +7,7 @@ import { Toaster } from "react-hot-toast";
 import { useAuthStore } from "./store/authUser";
 import { useEffect } from "react";
 import { Loader } from "lucide-react";
+import NavBar from "./components/NavBar";
 
 function App() {
 
@@ -28,8 +29,10 @@ function App() {
   }
 
   console.log("auth user is here: ", user);
+
   return (
     <div className="min-h-screen bg-gray-100 flex flex-col">
+      <NavBar />
       <div className="flex-1">
         <Routes>
           <Route path='/' element={<HomePage />} />
