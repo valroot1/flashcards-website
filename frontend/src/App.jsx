@@ -11,7 +11,7 @@ import NavBar from "./components/NavBar";
 
 function App() {
 
-  const { user, isCheckingAuth, authCheck } = useAuthStore();
+  const { isCheckingAuth, authCheck } = useAuthStore();
 
   useEffect(() => {
     console.log("useEffect authCheck chiamato");
@@ -27,8 +27,6 @@ function App() {
       </div>
     );
   }
-
-  console.log("auth user is here: ", user);
 
   return (
     <div className="min-h-screen bg-gray-100 flex flex-col">
