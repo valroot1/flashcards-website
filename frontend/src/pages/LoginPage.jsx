@@ -9,25 +9,18 @@ const LoginPage = () => {
   const [email, setEmail] = useState(emailValue || "");
   const [password, setPassword] = useState("");
   const { login, isLoggingIn } = useAuthStore();
-  const navigate = useNavigate();
+  //const navigate = useNavigate();
 
   const handleLogin = async (e) => {
     e.preventDefault();
     const success = await login({ email, password });
     if(success) {
-      navigate("/");
+      window.location.href = "/";
     }
   }
   
   return (
     <div className="w-full font-[Nunito] flex flex-col">
-
-      <header className="flex items-center p-4 shadow-md justify-between gap-2 sm:gap-8">
-        <Link to={"/"} className="text-2xl sm:text-3xl font-extrabold text-blue-600 tracking-wide">
-          FlashLearn
-        </Link>
-      </header>
-
       <div className="flex-1 md:flex">
         <div className="flex-1 flex justify-left items-center order-2 md:order-1 px-10">
           <div className="w-full max-w-md p-8">
