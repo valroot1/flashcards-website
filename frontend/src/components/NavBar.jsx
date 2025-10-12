@@ -15,8 +15,6 @@ const NavBar = () => {
     }
   }
 
-  console.log("NavBar renderizzata, user:", user); // Debug
-
   return (
     <header className="flex items-center p-4 shadow-md justify-between gap-2 sm:gap-8 bd-white">
       {location.pathname === "/" ? (
