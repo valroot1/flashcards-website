@@ -40,16 +40,16 @@ const NavBar = () => {
           // NAVBAR PER UTENTI NON AUTENTICATI
           <div>
             <Link
-              to="/login"
+              to="/signup"
               className='font-semibold text-blue-600 px-2 sm:px-4 hover:underline'
             >
-              Login
+              Sign Up
             </Link>
             <Link
-              to="/signup"
+              to="/login"
               className='font-semibold bg-blue-600 text-white px-4 py-2 rounded-lg hover:bg-blue-700 transition-colors'
             >
-              Sign Up
+              Login
             </Link>
           </div>
         )}
