@@ -1,4 +1,4 @@
-import { Route, Routes } from "react-router-dom"
+import { Navigate, Route, Routes } from "react-router-dom"
 import LoginPage from "./pages/LoginPage"
 import SignUpPage from "./pages/SignUpPage"
 import HomePage from "./pages/home/HomePage"
@@ -8,10 +8,11 @@ import { useAuthStore } from "./store/authUser";
 import { useEffect } from "react";
 import { Loader } from "lucide-react";
 import NavBar from "./components/NavBar";
+import HomeScreen from "./pages/home/HomeScreen";
 
 function App() {
 
-  const { isCheckingAuth, authCheck } = useAuthStore();
+  const { user, isCheckingAuth, authCheck } = useAuthStore();
 
   useEffect(() => {
     console.log("useEffect authCheck chiamato");
@@ -34,8 +35,8 @@ function App() {
       <div className="flex-1">
         <Routes>
           <Route path='/' element={<HomePage />} />
-          <Route path='/login' element={<LoginPage />} />
-          <Route path='/signup' element={<SignUpPage />} />
+          <Route path='/login' element={!user ? <LoginPage /> : <Navigate to="/" />} />
+          <Route path='/signup' element={!user ? <SignUpPage /> : <Navigate to="/" />} />
         </Routes>
       </div>
       <Footer />
