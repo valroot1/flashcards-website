@@ -9,7 +9,7 @@ const HomeScreen = () => {
   const { user } = useAuthStore();
   return (
     <div className="w-full font-[Nunito] flex flex-col">
-      <div className="w-full max-w-md p-8">
+      <div className="w-full p-8">
         <h2 className="text-2xl font-bold mb-6 text-left">
           Hi, {user.username}!
         </h2>
