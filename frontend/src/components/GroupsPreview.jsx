@@ -21,7 +21,7 @@ const GroupsPreview = () => {
         getGroups();
     }, []);
 
-    const truncateText = (text, max_length = 20) => {
+    const truncateText = (text, max_length = 30) => {
         if(!text) return '';
         return text.length > max_length ? text.substring(0, max_length)+'...' : text;
     }
@@ -41,7 +41,7 @@ const GroupsPreview = () => {
                 <Link
                     key={item.id}
                     to={`/group/${item._id}`}
-                    className='w-50 h-32 flex flex-col items-center justify-center border-2 hover:border-4 font-semibold bg-white text-black rounded-lg transition-all p-4'>
+                    className='w-45 h-30 flex flex-col items-center justify-center border-2 hover:border-4 font-semibold bg-white text-black rounded-4xl transition-all p-4'>
                     <h3 className='font-bold text-center mb-2'>{item.name}</h3>
                     {item.description ? (
                         <h4 className='text-sm text-center'>{truncateText(item.description)}</h4>
@@ -50,6 +50,11 @@ const GroupsPreview = () => {
                     )}
                 </Link>
             ))}
+            <Link 
+            to={"/group/addGroup"}
+            className='w-45 h-30 flex flex-col items-center justify-center border-2 hover:border-4 bg-white text-black font-bold rounded-4xl transition-all p-4 text-4xl'>
+            +
+            </Link>
         </div>
     );
 };
