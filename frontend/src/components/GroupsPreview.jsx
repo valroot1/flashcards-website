@@ -39,7 +39,7 @@ const GroupsPreview = () => {
         <div className='flex gap-4 mt-5'>
             {groups.map((item) => (
                 <Link
-                    key={item.id}
+                    key={item._id}
                     to={`/group/${item._id}`}
                     className='w-45 h-30 flex flex-col items-center justify-center border-2 hover:border-4 font-semibold bg-white text-black rounded-4xl transition-all p-4'>
                     <h3 className='font-bold text-center mb-2'>{item.name}</h3>
@@ -50,7 +50,8 @@ const GroupsPreview = () => {
                     )}
                 </Link>
             ))}
-            <Link 
+            <Link
+            id="addGroup" 
             to={"/group/addGroup"}
             className='w-45 h-30 flex flex-col items-center justify-center border-2 hover:border-4 bg-white text-black font-bold rounded-4xl transition-all p-4 text-4xl'>
             +

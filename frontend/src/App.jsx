@@ -9,6 +9,7 @@ import { useEffect } from "react";
 import { Loader } from "lucide-react";
 import NavBar from "./components/NavBar";
 import HomeScreen from "./pages/home/HomeScreen";
+import GroupPage from "./pages/GroupPage";
 
 function App() {
 
@@ -37,6 +38,7 @@ function App() {
           <Route path='/' element={<HomePage />} />
           <Route path='/login' element={!user ? <LoginPage /> : <Navigate to="/" />} />
           <Route path='/signup' element={!user ? <SignUpPage /> : <Navigate to="/" />} />
+          <Route path='/group/:id' element={ user ? <GroupPage /> : <Navigate to={"/login"} /> }/>
         </Routes>
       </div>
       <Footer />

@@ -23,7 +23,7 @@ export async function getGroupFlashcards(req, res) {
         const flashcards = await Flashcard.find({ group: id });
 
         if (flashcards === undefined || flashcards.length == 0) {
-            return res.status(400).json({ success: false, message: "No flashcards found" });
+            return res.status(404).json({ success: false, message: "No flashcards found" });
         }
 
         return res.status(200).json({ success: true, message: "Flashcards obtained", data: flashcards });
