@@ -1,4 +1,5 @@
 import axios from 'axios';
+import { Loader } from 'lucide-react';
 import React, { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
 
@@ -27,7 +28,13 @@ const GroupsPreview = () => {
     }
 
     if (isLoading) {
-        return <div className="text-black">Loading...</div>;
+        return (
+      <div className='h-screen'>
+        <div className='flex justify-center items-center bg-white h-full'>
+          <Loader className='animate-spin text-blue-600 size-10' />
+        </div>
+      </div>
+    );
     }
 
     if (groups.length === 0) {
@@ -41,7 +48,7 @@ const GroupsPreview = () => {
                 <Link
                     key={item._id}
                     to={`/group/${item._id}`}
-                    className='w-45 h-30 flex flex-col items-center justify-center border-2 hover:border-4 font-semibold bg-white text-black rounded-4xl transition-all p-4'>
+                    className='flex flex-col items-center justify-center border-2 hover:border-4 font-semibold bg-white text-black rounded-4xl transition-all p-4'>
                     <h3 className='font-bold text-center mb-2'>{item.name}</h3>
                     {item.description ? (
                         <h4 className='text-sm text-center'>{truncateText(item.description)}</h4>
@@ -53,7 +60,7 @@ const GroupsPreview = () => {
             <Link
             id="addGroup" 
             to={"/group/addGroup"}
-            className='w-45 h-30 flex flex-col items-center justify-center border-2 hover:border-4 bg-white text-black font-bold rounded-4xl transition-all p-4 text-4xl'>
+            className='w-30 h-30 flex flex-col items-center justify-center border-2 hover:border-4 bg-white text-black font-bold rounded-4xl transition-all p-4 text-4xl'>
             +
             </Link>
         </div>
