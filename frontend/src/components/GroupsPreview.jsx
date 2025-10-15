@@ -23,23 +23,27 @@ const GroupsPreview = () => {
     }, []);
 
     const truncateText = (text, max_length = 30) => {
-        if(!text) return '';
-        return text.length > max_length ? text.substring(0, max_length)+'...' : text;
+        if (!text) return '';
+        return text.length > max_length ? text.substring(0, max_length) + '...' : text;
     }
 
     if (isLoading) {
         return (
-      <div className='h-screen'>
-        <div className='flex justify-center items-center bg-white h-full'>
-          <Loader className='animate-spin text-blue-600 size-10' />
-        </div>
-      </div>
-    );
+            <div className='h-screen'>
+                <div className='flex justify-center items-center bg-white h-full'>
+                    <Loader className='animate-spin text-blue-600 size-10' />
+                </div>
+            </div>
+        );
     }
 
     if (groups.length === 0) {
         console.log("No Group found");
-        return <div className="text-black">No group found</div>;
+        return (
+            <div className="text-black mt-5">
+                No flashcard found
+            </div>
+        );
     }
 
     return (
@@ -58,10 +62,10 @@ const GroupsPreview = () => {
                 </Link>
             ))}
             <Link
-            id="addGroup" 
-            to={"/group/addGroup"}
-            className='w-30 h-30 flex flex-col items-center justify-center border-2 hover:border-4 bg-white text-black font-bold rounded-4xl transition-all p-4 text-4xl'>
-            +
+                id="addGroup"
+                to={"/group/addGroup"}
+                className='w-30 h-30 flex flex-col items-center justify-center border-2 hover:border-4 bg-white text-black font-bold rounded-4xl transition-all p-4 text-4xl'>
+                +
             </Link>
         </div>
     );
