@@ -8,9 +8,12 @@ const SignUpPage = () => {
   const [password, setPassword] = useState("");
   const { signup, isSigningUp } = useAuthStore();
   
-  const handleSignup = (e) => {
+  const handleSignup = async (e) => {
     e.preventDefault();
-    signup({ email, password, username });
+    const success = await signup({ email, password, username });
+    if(success) {
+      window.location.href="/";
+    }
   }
   return (
     <div className="w-full font-[Nunito] flex flex-col">
