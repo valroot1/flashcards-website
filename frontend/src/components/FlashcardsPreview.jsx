@@ -35,6 +35,16 @@ const FlashcardsPreview = () => {
         );
     }
 
+    if (flashcards.length === 0) {
+        return (
+            <div className='h-screen'>
+                <div className='flex justify-center items-center bg-white h-full'>
+                    <p className='text-gray-600 text-lg'>No flashcards found</p>
+                </div>
+            </div>
+        );
+    }
+
 
     return (
         <div className='flex gap-4 mt-5'>
