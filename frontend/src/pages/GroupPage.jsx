@@ -49,7 +49,8 @@ const GroupPage = () => {
                 </Link>
                 <div className='flex items-center'>
                     <h1 className='text-2xl font-bold text-left mr-10'>{group.name}</h1>
-                    <Link className='text-xl font-semibold mb-6 text-left mr-10'>EDIT</Link>
+                    <Link className='font-semibold bg-blue-600 text-white px-4 py-2 rounded-lg hover:bg-blue-700 transition-colors mr-8'>Modify</Link>
+                    <Link className='font-semibold bg-red-600 text-white px-4 py-2 rounded-lg hover:bg-red-700 transition-colors'>Delete</Link>
                 </div>
                 <h2 className='mb-4'>{group.description}</h2>
                 <Link
