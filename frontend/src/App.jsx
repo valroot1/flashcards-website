@@ -10,6 +10,8 @@ import { Loader } from "lucide-react";
 import NavBar from "./components/NavBar";
 import HomeScreen from "./pages/home/HomeScreen";
 import GroupPage from "./pages/GroupPage";
+import AddGroupPage from "./pages/addGroupPage";
+import StartFlashcards from "./pages/StartFlashcards";
 
 function App() {
 
@@ -23,8 +25,8 @@ function App() {
   if (isCheckingAuth) {
     return (
       <div className='h-screen'>
-        <div className='flex justify-center items-center bg-black h-full'>
-          <Loader className='animate-spin text-red-600 size-10' />
+        <div className='flex justify-center items-center bg-white h-full'>
+          <Loader className='animate-spin text-blue-600 size-10' />
         </div>
       </div>
     );
@@ -39,6 +41,8 @@ function App() {
           <Route path='/login' element={!user ? <LoginPage /> : <Navigate to="/" />} />
           <Route path='/signup' element={!user ? <SignUpPage /> : <Navigate to="/" />} />
           <Route path='/group/:id' element={ user ? <GroupPage /> : <Navigate to={"/login"} /> }/>
+          <Route path='/group/addGroup' element={ user ? <AddGroupPage /> : <Navigate to={"/login"} /> }/>
+          <Route path='/group/:id/start' element={ user ? <StartFlashcards /> : <Navigate to={"/login"} /> }/>
         </Routes>
       </div>
       <Footer />
