@@ -38,8 +38,8 @@ const GroupsPreview = () => {
     }
 
     if (groups.length === 0) {
-        console.log("No Gruppo");
-        return <div className="text-black">Nessun gruppo trovato.</div>;
+        console.log("No Group found");
+        return <div className="text-black">No group found</div>;
     }
 
     return (
