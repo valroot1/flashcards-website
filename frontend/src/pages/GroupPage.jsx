@@ -52,7 +52,13 @@ const GroupPage = () => {
                     <Link className='font-semibold bg-blue-600 text-white px-4 py-2 rounded-lg hover:bg-blue-700 transition-colors mr-8'>Modify</Link>
                     <Link className='font-semibold bg-red-600 text-white px-4 py-2 rounded-lg hover:bg-red-700 transition-colors'>Delete</Link>
                 </div>
-                <h2 className='mb-4'>{group.description}</h2>
+                <h2 className='mb-4 mt-4'>
+                    {group.description ? (
+                        <h4>{group.description}</h4>
+                    ) : (
+                        <h4>No description</h4>
+                    )}
+                </h2>
                 <Link
                     to={`/group/${id}/start`}
                     className='font-semibold bg-blue-600 text-white px-4 py-2 rounded-lg hover:bg-blue-700 transition-colors'>
