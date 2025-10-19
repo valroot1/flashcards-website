@@ -38,8 +38,14 @@ const FlashcardsPreview = () => {
     if (flashcards.length === 0) {
         return (
             <div className="text-black mt-5">
-                No group found
+                <Link
+                id="addFlashcards"
+                to={"/group/addFlashcards"}
+                className='w-10 h-10 flex flex-col items-center justify-center border-2 hover:border-4 bg-white text-black font-bold rounded-4xl transition-all p-4 text-4xl'>
+                +
+            </Link>
             </div>
+            
         );
     }
 
@@ -55,8 +61,8 @@ const FlashcardsPreview = () => {
                 </Link>
             ))}
             <Link
-                id="addGroup"
-                to={"/group/addGroup"}
+                id="addFlashcards"
+                to={"/group/addFlashcards"}
                 className='w-10 h-10 flex flex-col items-center justify-center border-2 hover:border-4 bg-white text-black font-bold rounded-4xl transition-all p-4 text-4xl'>
                 +
             </Link>
