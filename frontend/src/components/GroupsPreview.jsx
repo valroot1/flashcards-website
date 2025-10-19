@@ -3,7 +3,7 @@ import { Loader } from 'lucide-react';
 import React, { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
 
-const GroupsPreview = () => {
+const GroupsPreview = ({ onOpenAddDialog }) => {
     const [groups, setGroups] = useState([]);
     const [isLoading, setIsLoading] = useState(true);
 
@@ -22,7 +22,7 @@ const GroupsPreview = () => {
         getGroups();
     }, []);
 
-    const truncateText = (text, max_length = 30) => {
+    const truncateText = (text, max_length = 20) => {
         if (!text) return '';
         return text.length > max_length ? text.substring(0, max_length) + '...' : text;
     }
@@ -61,12 +61,11 @@ const GroupsPreview = () => {
                     )}
                 </Link>
             ))}
-            <Link
-                id="addGroup"
-                to={"/group/addGroup"}
+            <button
+                onClick={onOpenAddDialog}
                 className='w-30 h-30 flex flex-col items-center justify-center border-2 hover:border-4 bg-white text-black font-bold rounded-4xl transition-all p-4 text-4xl'>
                 +
-            </Link>
+            </button>
         </div>
     );
 };
