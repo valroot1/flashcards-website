@@ -1,13 +1,15 @@
 import axios from 'axios';
 import React, { useEffect, useState } from 'react'
-import { Link, useParams } from 'react-router-dom';
+import { Link, useNavigate, useParams } from 'react-router-dom';
 import FlashcardsPreview from '../components/FlashcardsPreview';
 import { Loader } from 'lucide-react';
+import toast from 'react-hot-toast';
 
 const GroupPage = () => {
     const { id } = useParams();
     const [group, setGroup] = useState({});
     const [isloading, setIsLoading] = useState(true);
+    const navigate = useNavigate();
 
     useEffect(() => {
         const getGroup = async () => {
@@ -25,6 +27,22 @@ const GroupPage = () => {
 
         getGroup();
     }, [id]);
+
+    const handleDelete = async (e) => {
+        e.preventDefault();
+        try {
+            setIsLoading(true);
+            const res = await axios.delete(`/api/group/${id}`);
+            if (res.status == 201) {
+                toast.success(res.data.message);
+                navigate("/");
+            }
+        } catch (error) {
+            toast.error(error.response.data.message);
+        } finally {
+            setIsLoading(false);
+        }
+    }
 
 
     if (isloading) {
@@ -49,8 +67,11 @@ const GroupPage = () => {
                 </Link>
                 <div className='flex items-center'>
                     <h1 className='text-2xl font-bold text-left mr-10'>{group.name}</h1>
-                    <Link className='font-semibold bg-blue-600 text-white px-4 py-2 rounded-lg hover:bg-blue-700 transition-colors mr-8'>Modify</Link>
-                    <Link className='font-semibold bg-red-600 text-white px-4 py-2 rounded-lg hover:bg-red-700 transition-colors'>Delete</Link>
+                    <button className='font-semibold bg-blue-600 text-white px-4 py-2 rounded-lg hover:bg-blue-700 transition-colors mr-8'>Modify</button>
+                    <button className='font-semibold bg-red-600 text-white px-4 py-2 rounded-lg hover:bg-red-700 transition-colors'
+                     onClick={handleDelete}>
+                        Delete
+                    </button>
                 </div>
                 <h2 className='mb-4 mt-4'>
                     {group.description ? (
