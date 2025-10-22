@@ -42,8 +42,11 @@ const AddGroupPage = ({ isOpen, onClose, onAddGroup }) => {
   if (!isOpen) return null;
 
   return (
-    <div className="fixed inset-0 bg-black bg-opacity-25 flex items-center justify-center p-4 z-50">
-      <div className="bg-white rounded-lg max-w-md w-full">
+    <div 
+      className="fixed inset-0 z-50 flex items-center justify-center p-4"
+      style={{ backgroundColor: 'rgba(0, 0, 0, 0.8)' }}
+    >
+      <div className="bg-white rounded-lg max-w-md w-full relative z-10 shadow-xl">
         <div className='m-5'>
           <header className='font-bold text-xl'>
             New Group
